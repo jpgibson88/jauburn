@@ -8,6 +8,13 @@ Class {
 }
 
 { #category : #accessing }
+JbIfElseNode >> executeIn: environment [
+	(condition evaluateIn: environment) 
+		ifTrue: [ super executeIn: environment ]
+		ifFalse: 	[ falseStatements  do: [ :each | each executeIn: environment ] ]
+]
+
+{ #category : #accessing }
 JbIfElseNode >> falseStatements [
 	^ falseStatements
 ]

@@ -8,6 +8,18 @@ Class {
 }
 
 { #category : #accessing }
+JbReturnStatementNode >> executeIn: environment [
+
+	| returnValue |
+	returnValue := expression evaluateIn: environment.
+	(JbReturnException new returnValue: returnValue) signal
+	
+	
+	
+	"(expression evaluateIn: environment)."
+]
+
+{ #category : #accessing }
 JbReturnStatementNode >> expression [
 	^ expression
 ]

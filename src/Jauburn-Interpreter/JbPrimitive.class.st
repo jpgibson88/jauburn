@@ -10,6 +10,12 @@ Class {
 	#category : #'Jauburn-Interpreter-Core'
 }
 
+{ #category : #documentation }
+JbPrimitive class >> primitives [
+
+^ (self selectors select: [ :each | each endsWith: 'Binding' ]) 
+]
+
 { #category : #accessing }
 JbPrimitive >> block [
 	^ block
@@ -24,5 +30,25 @@ JbPrimitive >> block: anObject [
 JbPrimitive >> call: arguments in: callEnvironment [
 	"You need to implement this method!  arguments will contain the arguments to pass to this function and callEnvironment will contain the environment in place when this function was called."
 	
-	self shouldBeImplemented 
+	| parameters |
+	parameters := arguments collect: [ :a | a evaluateIn: callEnvironment ].
+   ^ block valueWithPossibleArgs: parameters
+
+
+
+
+" call: arguments in: callEnvironment
+	
+	| parameters |
+	parameters := arguments collect: [ :a | a evaluateIn: callEnvironment ].
+	[ block valueWithPossibleArgs: parameters ] on: JbReturnException do: [ :e | ^ e returnValue ] "
+
+	
+
+	
+
+	
+
+
+
 ]

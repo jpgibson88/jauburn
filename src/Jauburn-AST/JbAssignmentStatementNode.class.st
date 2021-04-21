@@ -8,6 +8,11 @@ Class {
 	#category : #'Jauburn-AST-Core'
 }
 
+{ #category : #api }
+JbAssignmentStatementNode >> executeIn: environment [ 
+	environment lookupAt: identifier put: (expression evaluateIn: environment).
+]
+
 { #category : #accessing }
 JbAssignmentStatementNode >> expression [
 	^ expression

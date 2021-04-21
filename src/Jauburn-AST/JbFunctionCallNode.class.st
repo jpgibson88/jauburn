@@ -18,6 +18,18 @@ JbFunctionCallNode >> arguments: anObject [
 	arguments := anObject
 ]
 
+{ #category : #api }
+JbFunctionCallNode >> evaluateIn: environment [ 
+	^ (environment at: identifier) call: arguments in: environment
+	
+]
+
+{ #category : #api }
+JbFunctionCallNode >> executeIn: environment [ 
+	(environment at: identifier) call: arguments in: environment
+	
+]
+
 { #category : #accessing }
 JbFunctionCallNode >> identifier [
 	^ identifier
